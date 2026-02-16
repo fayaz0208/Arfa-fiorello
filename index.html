@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arfa Fiorello - Premium Handmade Flowers & Crafts">
+    <title>Arfa Fiorello | Premium Handmade Creations</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">
+                <img src="assets/logo_icon.png" alt="Arfa's Fiorello Logo">
+                <div class="logo-text">
+                    <span class="brand-name">Arfa's Fiorello</span>
+                    <span class="tagline">Handmade with Love</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+            </ul>
+            <div class="nav-socials">
+                <a href="https://instagram.com/_mohammadfayaz_" target="_blank" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="https://wa.me/918660238151" target="_blank" aria-label="WhatsApp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <div class="hero-content">
+                <span class="badge">Handmade with Love</span>
+                <h1>Timeless Beauty, <br> Crafted by Hand</h1>
+                <p class="hero-description">
+                    Discover exquisite handmade flowers and unique crafts that bring eternal elegance to your space.
+                </p>
+                <div class="hero-actions">
+                    <a href="#gallery" class="btn btn-primary">View Collection</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper floating">
+                    <img src="assets/flower2.jpg" alt="Premium Handmade Flowers" class="hero-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- About/Story Section -->
+        <section id="about" class="about container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <img src="assets/flower3.jpg" alt="Handcrafted Flower Detail">
+                </div>
+                <div class="about-content reveal">
+                    <span class="badge">Our Story</span>
+                    <h2>Crafting Emotions, <br> One Petal at a Time</h2>
+                    <p>
+                        Welcome to <strong>Arfa's Fiorello</strong>, where artistry meets nature. Every flower we create
+                        is more than just a decoration;
+                        it is a labor of love, designed to capture the delicate beauty of real blooms that never fade.
+                    </p>
+                    <p>
+                        Born from a passion for timeless elegance, we specialize in premium handmade flowers and unique
+                        crafts that add a touch
+                        of sophistication to your home, gifts, and special moments. Each piece is meticulously crafted
+                        to bring joy and lasting beauty to your world.
+                    </p>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery container">
+            <div class="section-header">
+                <h2>The Showcase</h2>
+                <p>A glimpse into our meticulously crafted floral wonders.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal">
+                    <img src="assets/flower1.jpg" alt="Floral Creation 1">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="assets/flower2.jpg" alt="Floral Creation 2">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="assets/flower3.jpg" alt="Floral Creation 3">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="assets/flower4.jpg" alt="Floral Creation 4">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="assets/flower5.jpg" alt="Floral Creation 5">
+                </div>
+            </div>
+        </section>
+
+
+        <section id="feedback" class="feedback container">
+            <div class="feedback-section reveal">
+                <h2>Share Your Thoughts</h2>
+                <p>We value your feedback and would love to hear from you.</p>
+                <form id="feedbackForm" class="feedback-form">
+                    <div class="form-group">
+                        <label for="name" style="display:none">Name</label>
+                        <!-- Hidden label for accessibility/design match -->
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" style="display:none">Message</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us what you think..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit Feedback</button>
+                </form>
+                <div id="formStatus" class="form-status"></div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container contact-container">
+                <div class="contact-card glass reveal">
+                    <h2>Connect With Us</h2>
+                    <p>Reach out for custom orders or inquiries.</p>
+                    <div class="contact-methods">
+                        <a href="mailto:fayazshariffmohammad@gmail.com" class="contact-method">
+                            <div class="icon">✉️</div>
+                            <div class="method-info">
+                                <h3>Email Us</h3>
+                                <p>fayazshariffmohammad@gmail.com</p>
+                            </div>
+                        </a>
+                        <a href="https://instagram.com/_mohammadfayaz_" target="_blank" class="contact-method">
+                            <div class="icon">📸</div>
+                            <div class="method-info">
+                                <h3>Instagram</h3>
+                                <p>@_mohammadfayaz_</p>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/911234567890" target="_blank" class="contact-method">
+                            <div class="icon">💬</div>
+                            <div class="method-info">
+                                <h3>WhatsApp</h3>
+                                <p>Chat with us</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Arfa Fiorello. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
