@@ -65,16 +65,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch(error => {
                     console.error('Error:', error);
                     formStatus.textContent = 'Oops! Something went wrong. Please try again.';
-                    formStatus.className = 'form-status error'; // You might want to add .error style
+                    formStatus.className = 'form-status error';
                 });
         });
     }
-    // Instagram App Redirect (User's suggested approach for Android)
+
+    // Instagram App Redirect - FIXED VERSION FOR ANDROID
     document.querySelectorAll('[data-insta-app]').forEach(link => {
         link.addEventListener('click', function (e) {
-            if (/Android/i.test(navigator.userAgent)) {
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            const isInstagramApp = /Instagram/i.test(navigator.userAgent);
+
+            if (isAndroid && !isInstagramApp) {
+                // Android device - use proper deep link
                 e.preventDefault();
-                window.location = 'intent://www.instagram.com/arfa.fiorello/#Intent;package=com.instagram.android;scheme=https;end';
+
+                // Method 1: Try direct username deep link first
+                const username = 'arfa.fiorello';
+                const deepLinkUrl = `instagram://user?username=${username}`;
+
+                // Create a timeout to fallback to web if app doesn't open
+                const timeout = setTimeout(() => {
+                    window.location.href = 'https://www.instagram.com/arfa.fiorello/';
+                }, 1500);
+
+                // Attempt to open the app
+                window.location.href = deepLinkUrl;
+
+                // Clear timeout if this function completes (app opened)
+                window.addEventListener('pagehide', () => {
+                    clearTimeout(timeout);
+                });
             }
             // For iOS and Desktop, let the default target="_blank" behavior work
         });
