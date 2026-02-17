@@ -65,45 +65,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch(error => {
                     console.error('Error:', error);
                     formStatus.textContent = 'Oops! Something went wrong. Please try again.';
-                    formStatus.className = 'form-status error';
+                    formStatus.className = 'form-status error'; // You might want to add .error style
                 });
         });
     }
-
-    // Instagram App Redirect - ANDROID WITH PROPER URL INTENT
-    document.querySelectorAll('[data-insta-app]').forEach(link => {
-        link.addEventListener('click', function (e) {
-            const isAndroid = /Android/i.test(navigator.userAgent);
-
-            if (isAndroid) {
-                e.preventDefault();
-
-                // Use the precise intent format with www and trailing slash
-                const intentUrl = 'intent://www.instagram.com/arfa.fiorello/#Intent;package=com.instagram.android;scheme=https;end';
-
-                let appOpened = false;
-
-                // Set a timeout to detect if app opened
-                const timeout = setTimeout(() => {
-                    if (!appOpened) {
-                        // App didn't open, fallback to web
-                        window.location.href = 'https://www.instagram.com/arfa.fiorello?igsh=NDQ4b3gwa3J2aHFx';
-                    }
-                }, 1200);
-
-                // If page hides/unloads, the app likely opened
-                const onPageHide = () => {
-                    appOpened = true;
-                    clearTimeout(timeout);
-                };
-
-                window.addEventListener('pagehide', onPageHide, { once: true });
-                window.addEventListener('beforeunload', onPageHide, { once: true });
-
-                // Try to open the app
-                window.location.href = intentUrl;
-            }
-            // For iOS and Desktop, let the default target="_blank" behavior work
-        });
-    });
 });
+
+function openInstagramProfile() {
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    if (isAndroid) {
+        // Try to open Instagram app
+        window.location.href = 'intent://instagram.com/arfa.fiorello/#Intent;package=com.instagram.android;scheme=https;end';
+
+        // Fallback to web after 2 seconds
+        setTimeout(() => {
+            window.location.href = 'https://www.instagram.com/arfa.fiorello/';
+        }, 2000);
+
+        return false;
+    }
+
+    // For other devices, open normally
+    return true;
+}
