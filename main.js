@@ -70,33 +70,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Instagram App Redirect - FIXED VERSION FOR ANDROID
+    // Instagram App Redirect - ANDROID FIX WITH MULTIPLE FALLBACK METHODS
     document.querySelectorAll('[data-insta-app]').forEach(link => {
         link.addEventListener('click', function (e) {
             const isAndroid = /Android/i.test(navigator.userAgent);
-            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-            const isInstagramApp = /Instagram/i.test(navigator.userAgent);
 
-            if (isAndroid && !isInstagramApp) {
-                // Android device - use proper deep link
+            if (isAndroid) {
                 e.preventDefault();
 
-                // Method 1: Try direct username deep link first
-                const username = 'arfa.fiorello';
-                const deepLinkUrl = `instagram://user?username=${username}`;
+                // Method 1: Use intent to open Instagram app with the profile URL
+                const intentUrl = 'intent://instagram.com/_u/arfa.fiorello#Intent;package=com.instagram.android;scheme=https;end';
 
-                // Create a timeout to fallback to web if app doesn't open
+                // Create a timeout to fallback if app doesn't open (1 second)
                 const timeout = setTimeout(() => {
+                    // Fallback to web browser
                     window.location.href = 'https://www.instagram.com/arfa.fiorello/';
-                }, 1500);
+                }, 1000);
 
-                // Attempt to open the app
-                window.location.href = deepLinkUrl;
-
-                // Clear timeout if this function completes (app opened)
-                window.addEventListener('pagehide', () => {
+                try {
+                    window.location.href = intentUrl;
+                } catch (err) {
+                    // If intent fails, go directly to web
                     clearTimeout(timeout);
-                });
+                    window.location.href = 'https://www.instagram.com/arfa.fiorello/';
+                }
+
+                // Clear timeout if page unloads (app opened)
+                const unloadHandler = () => clearTimeout(timeout);
+                window.addEventListener('pagehide', unloadHandler);
+                window.addEventListener('beforeunload', unloadHandler);
             }
             // For iOS and Desktop, let the default target="_blank" behavior work
         });
