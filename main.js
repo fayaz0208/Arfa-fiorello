@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', function (e) {
             if (/Android/i.test(navigator.userAgent)) {
                 e.preventDefault();
-                window.location = 'instagram://user/?username=arfa.fiorello';
+                window.location = 'intent://www.instagram.com/arfa.fiorello/#Intent;package=com.instagram.android;scheme=https;end';
             }
             // For iOS and Desktop, let the default target="_blank" behavior work
         });
