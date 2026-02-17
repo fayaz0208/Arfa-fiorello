@@ -80,6 +80,10 @@ h3,
     gap: 3px;
     /* Reduced gap as requested */
     text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .logo img {
