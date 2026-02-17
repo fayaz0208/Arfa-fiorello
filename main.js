@@ -69,4 +69,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
+    // Forced Instagram App Open for Mobile (Platform Specific)
+    const instaLinks = document.querySelectorAll('a[href*="instagram.com"]');
+    instaLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const isInstagramApp = /Instagram/i.test(userAgent);
+            const isiOS = /iPhone|iPad|iPod/i.test(userAgent);
+            const isAndroid = /Android/i.test(userAgent);
+
+            if (isiOS || isAndroid) {
+                // Don't intercept if already inside Instagram's in-app browser
+                if (isInstagramApp) return;
+
+                e.preventDefault();
+                const username = 'arfa.fiorello';
+                const webUrl = this.href;
+                let appUrl = `instagram://user?username=${username}`;
+
+                if (isAndroid) {
+                    appUrl = `intent://www.instagram.com/${username}/#Intent;package=com.instagram.android;scheme=https;end`;
+                }
+
+                // Try opening in App
+                window.location.href = appUrl;
+
+                // Fallback to web if app doesn't open in 500ms
+                setTimeout(() => {
+                    window.location.href = webUrl;
+                }, 500);
+            }
+        });
+    });
 });
