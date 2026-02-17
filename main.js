@@ -70,22 +70,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-function openInstagramProfile() {
-    const isAndroid = /Android/i.test(navigator.userAgent);
-
-    if (isAndroid) {
-        // Try to open Instagram app
-        window.location.href = 'intent://instagram.com/arfa.fiorello/#Intent;package=com.instagram.android;scheme=https;end';
-
-        // Fallback to web after 2 seconds
-        setTimeout(() => {
-            window.location.href = 'https://www.instagram.com/arfa.fiorello/';
-        }, 2000);
-
-        return false;
-    }
-
-    // For other devices, open normally
-    return true;
-}
