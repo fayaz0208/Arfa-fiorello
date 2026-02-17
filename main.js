@@ -70,3 +70,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+function openInstagramProfile() {
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    if (isAndroid) {
+        // Option 1: Users intent URL with share link
+        window.location.href = 'intent://instagram.com/arfa.fiorello?igsh=NDQ4b3gwa3J2aHFx#Intent;package=com.instagram.android;scheme=https;end';
+
+        // Fallback to web after 2 seconds
+        setTimeout(() => {
+            window.location.href = 'https://www.instagram.com/arfa.fiorello?igsh=NDQ4b3gwa3J2aHFx';
+        }, 2000);
+
+        return false;
+    }
+
+    // For other devices, open normally
+    return true;
+}
