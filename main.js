@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const reveal = () => {
         const reveals = document.querySelectorAll('.reveal');
 
+        const windowHeight = window.innerHeight;
         reveals.forEach(element => {
-            const windowHeight = window.innerHeight;
             const elementTop = element.getBoundingClientRect().top;
             const elementVisible = 150;
 
@@ -67,6 +67,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     formStatus.textContent = 'Oops! Something went wrong. Please try again.';
                     formStatus.className = 'form-status error'; // You might want to add .error style
                 });
+        });
+    }
+
+    // Instagram Deep Linking Logic
+    const instagramLinks = document.querySelectorAll('a[href*="instagram.com"]');
+
+    if (instagramLinks) {
+        instagramLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Only run this logic on mobile devices
+                if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                    e.preventDefault();
+
+                    const username = "arfa.fiorello"; // Correct username
+                    const appUrl = `instagram://user?username=${username}`;
+                    const webUrl = `https://www.instagram.com/${username}`;
+
+                    // Try to open the app
+                    window.location.href = appUrl;
+
+                    // Fallback: If the app doesn't open within 500ms, go to the browser version
+                    setTimeout(() => {
+                        window.location.href = webUrl;
+                    }, 500);
+                }
+            });
         });
     }
 });
