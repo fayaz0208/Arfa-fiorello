@@ -675,6 +675,7 @@ h1 span {
     }
 
     .hero-actions {
+        display: flex;
         flex-direction: column;
         gap: 15px;
     }
@@ -682,7 +683,8 @@ h1 span {
     .btn {
         width: 100%;
         text-align: center;
-        padding: 15px 25px;
+        padding: 12px 20px;
+        font-size: 0.95rem;
     }
 
     .about-grid {
