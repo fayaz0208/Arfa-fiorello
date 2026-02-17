@@ -71,8 +71,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function openInstagramProfile() {
-    // Option 2 (Simplest): Just use window.open with the share URL
-    window.open('https://www.instagram.com/arfa.fiorello?igsh=NDQ4b3gwa3J2aHFx', '_blank');
-    return false;
-}
+
