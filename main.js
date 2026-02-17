@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Instagram App Redirect - ANDROID FIX WITH MULTIPLE FALLBACK METHODS
+    // Instagram App Redirect - ANDROID WITH PROPER URL INTENT
     document.querySelectorAll('[data-insta-app]').forEach(link => {
         link.addEventListener('click', function (e) {
             const isAndroid = /Android/i.test(navigator.userAgent);
@@ -78,27 +78,30 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isAndroid) {
                 e.preventDefault();
 
-                // Method 1: Use intent to open Instagram app with the profile URL
+                // Use the _u/ parameter format which works better on Android
                 const intentUrl = 'intent://instagram.com/_u/arfa.fiorello#Intent;package=com.instagram.android;scheme=https;end';
 
-                // Create a timeout to fallback if app doesn't open (1 second)
+                let appOpened = false;
+
+                // Set a timeout to detect if app opened
                 const timeout = setTimeout(() => {
-                    // Fallback to web browser
-                    window.location.href = 'https://www.instagram.com/arfa.fiorello/';
-                }, 1000);
+                    if (!appOpened) {
+                        // App didn't open, fallback to web
+                        window.location.href = 'https://www.instagram.com/arfa.fiorello?igsh=NDQ4b3gwa3J2aHFx';
+                    }
+                }, 1200);
 
-                try {
-                    window.location.href = intentUrl;
-                } catch (err) {
-                    // If intent fails, go directly to web
+                // If page hides/unloads, the app likely opened
+                const onPageHide = () => {
+                    appOpened = true;
                     clearTimeout(timeout);
-                    window.location.href = 'https://www.instagram.com/arfa.fiorello/';
-                }
+                };
 
-                // Clear timeout if page unloads (app opened)
-                const unloadHandler = () => clearTimeout(timeout);
-                window.addEventListener('pagehide', unloadHandler);
-                window.addEventListener('beforeunload', unloadHandler);
+                window.addEventListener('pagehide', onPageHide, { once: true });
+                window.addEventListener('beforeunload', onPageHide, { once: true });
+
+                // Try to open the app
+                window.location.href = intentUrl;
             }
             // For iOS and Desktop, let the default target="_blank" behavior work
         });
