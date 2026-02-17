@@ -78,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isAndroid) {
                 e.preventDefault();
 
-                // Use the _u/ parameter format which works better on Android
-                const intentUrl = 'intent://instagram.com/_u/arfa.fiorello#Intent;package=com.instagram.android;scheme=https;end';
+                // Use the precise intent format with www and trailing slash
+                const intentUrl = 'intent://www.instagram.com/arfa.fiorello/#Intent;package=com.instagram.android;scheme=https;end';
 
                 let appOpened = false;
 
