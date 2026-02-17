@@ -80,10 +80,20 @@ h3,
     gap: 3px;
     /* Reduced gap as requested */
     text-decoration: none;
+    /* Thoroughly prevent selection and mobile context menus */
     user-select: none;
     -webkit-user-select: none;
+    -webkit-touch-callout: none;
     -moz-user-select: none;
     -ms-user-select: none;
+}
+
+.logo img,
+.logo-text {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .logo img {
