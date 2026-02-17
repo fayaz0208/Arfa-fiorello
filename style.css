@@ -80,12 +80,14 @@ h3,
     gap: 3px;
     /* Reduced gap as requested */
     text-decoration: none;
-    /* Thoroughly prevent selection and mobile context menus */
+    /* Aggressively suppress all selection, highlight, and drag behaviors */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
     user-select: none;
     -webkit-user-select: none;
-    -webkit-touch-callout: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    outline: none;
 }
 
 .logo img,
@@ -94,6 +96,7 @@ h3,
     user-select: none;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
+    -webkit-user-drag: none;
 }
 
 .logo img {
