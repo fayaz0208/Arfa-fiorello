@@ -69,4 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
+    // Instagram App Redirect (User's suggested approach for Android)
+    document.querySelectorAll('[data-insta-app]').forEach(link => {
+        link.addEventListener('click', function (e) {
+            if (/Android/i.test(navigator.userAgent)) {
+                e.preventDefault();
+                window.location = 'instagram://user/?username=arfa.fiorello';
+            }
+            // For iOS and Desktop, let the default target="_blank" behavior work
+        });
+    });
 });
