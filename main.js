@@ -70,28 +70,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Instagram Deep Linking Logic
+    // Instagram Deep Linking Logic (Robust Android Intent)
     const instagramLinks = document.querySelectorAll('a[href*="instagram.com"]');
 
     if (instagramLinks) {
         instagramLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                // Only run this logic on mobile devices
-                if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                const username = "arfa.fiorello";
+
+                // Detect Android
+                const isAndroid = /Android/i.test(navigator.userAgent);
+
+                if (isAndroid) {
                     e.preventDefault();
 
-                    const username = "arfa.fiorello"; // Correct username
-                    const appUrl = `instagram://user?username=${username}`;
-                    const webUrl = `https://www.instagram.com/${username}`;
+                    /**
+                     * The 'intent://' URL below is the most robust method for Android.
+                     * 1. It uses 'instagram.com/_u/' which forces the app to the user profile.
+                     * 2. 'package=com.instagram.android' ensures it targets the official app.
+                     * 3. 'S.browser_fallback_url' provides a backup if the app isn't installed.
+                     */
+                    const intentUrl = `intent://www.instagram.com/_u/${username}/#Intent;package=com.instagram.android;scheme=https;S.browser_fallback_url=https://www.instagram.com/${username};end`;
 
-                    // Try to open the app
-                    window.location.href = appUrl;
-
-                    // Fallback: If the app doesn't open within 500ms, go to the browser version
-                    setTimeout(() => {
-                        window.location.href = webUrl;
-                    }, 500);
+                    window.location.href = intentUrl;
                 }
+                // On iOS or Desktop, the standard link in your HTML will work fine automatically.
             });
         });
     }
